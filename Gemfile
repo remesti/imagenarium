@@ -27,8 +27,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.1'
-  gem 'shoulda-matchers', '~> 2.7.0', require: false
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'simplecov', require: false

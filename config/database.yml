@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: imagenarium_development
+
+  test:
+  <<: *default
+  database: imagenarium_test
+
+production:
+  <<: *default
+  database: imagenarium_production
+  username: imagenarium
+  password: <%= ENV['IMAGENARIUM_DATABASE_PASSWORD'] %>

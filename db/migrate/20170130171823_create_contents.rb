@@ -1,6 +1,6 @@
-class CreateCards < ActiveRecord::Migration[5.0]
+class CreateContents < ActiveRecord::Migration[5.0]
   def change
-    create_table :cards do |t|
+    create_table :contents do |t|
       t.string :text, null: false
       t.attachment :audio, null: false
 

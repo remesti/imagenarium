@@ -11,6 +11,23 @@
 // about supported directives.
 //
 //= require jquery
+//= require tether
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready( function() {
+
+  $('.audio').on('ended',  function() {
+    setTimeout(function() {
+      $('.js-card:visible:last').hide();
+      $('.js-card:visible:last').find('audio')[0].play();
+    }, 500);
+  });
+
+  $('.text').on('focusout', function() {
+    var textValue = $('.text').val();
+    $('.image-name').val(textValue);
+  });
+});

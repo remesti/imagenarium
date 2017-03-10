@@ -1,2 +1,2 @@
-h1 CardSession#show
-p Find me in app/views/card_session/show.html.slim
+- @card_session.cards.each do |card|
+  = card.content.text

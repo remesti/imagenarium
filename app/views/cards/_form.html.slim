@@ -1,0 +1,20 @@
+.container
+  = form_for @card do |f|
+    = f.fields_for :content do |c|
+      .form-group.row
+        .col-form-label.col-sm-2= c.label :text
+        .col-sm-4= c.text_field :text, class: 'form-control text'
+      .form-group.row
+        .col-form-label.col-sm-2= c.label :audio, 'Audio file'
+        .col-sm-4= c.file_field :audio
+
+    = f.fields_for :image do |i|
+      .form-group.row
+        .col-form-label.col-sm-2= i.label :name, 'Image description'
+        .col-sm-4= i.text_field :name, class: 'form-control image-name'
+      .form-group.row
+        .col-form-label.col-sm-2= i.label :image, 'Image file'
+        .col-sm-4= i.file_field :image
+
+    .form-group.row
+      .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'

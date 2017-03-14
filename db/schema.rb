@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207192308) do
+ActiveRecord::Schema.define(version: 20170310223039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20170207192308) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.integer  "image_id",   null: false
-    t.integer  "content_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "image_id",    null: false
+    t.integer  "content_id",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "language_id"
+    t.integer  "topic_id"
     t.index ["content_id"], name: "index_cards_on_content_id", using: :btree
     t.index ["image_id"], name: "index_cards_on_image_id", using: :btree
   end
@@ -54,6 +56,20 @@ ActiveRecord::Schema.define(version: 20170207192308) do
     t.datetime "image_updated_at",   null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "language_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["language_id"], name: "index_topics_on_language_id", using: :btree
   end
 
 end

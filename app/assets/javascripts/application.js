@@ -13,6 +13,7 @@
 //= require jquery
 //= require tether
 //= require jquery_ujs
+//= require jquery-ui/widgets/autocomplete
 //= require bootstrap
 //= require turbolinks
 //= require_tree .

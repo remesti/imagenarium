@@ -45,6 +45,8 @@ class CardsController < ApplicationController
       .permit(
         :content_id,
         :image_id,
+        :language_id,
+        :topic_name,
         content_attributes: [:text, :audio],
         image_attributes: [:name, :image]
       )

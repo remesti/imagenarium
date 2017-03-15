@@ -1,8 +1,8 @@
 - @cards.each do |card|
-  .card.js-card
+  .shichida-card.js-card
     = image_tag card.image.image, class: 'image'
     = audio_tag card.content.audio, class: 'audio'
 
-.card.js-card
+.shichida-card.js-card
   = image_tag @first_card.image.image, class: 'image'
   = audio_tag @first_card.content.audio, autoplay: true, class: 'audio'

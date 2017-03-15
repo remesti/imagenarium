@@ -4,9 +4,6 @@ class CardsController < ApplicationController
     @card = Card.new
     @card.build_image
     @card.build_content
-
-    @images = Image.all
-    @contents = Content.all
   end
 
   def create

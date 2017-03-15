@@ -1,0 +1,11 @@
+.container
+  h3= @topic.name
+  .card-columns
+    - @topic.cards.each do |card|
+      .card
+        = image_tag card.image.image, class: 'card-img-top img-fluid'
+        = audio_tag card.content.audio, controls: 'controls'
+
+        .card-block
+          h4.card-title= card.content.text
+          

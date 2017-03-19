@@ -5,5 +5,7 @@ class Image < ApplicationRecord
                     path: ":class/:attachment/:id_partition/:style/:filename"
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates :image, presence: true
+  validates :name, presence: true
 
 end

@@ -6,6 +6,7 @@ class Content < ApplicationRecord
                     path: ":class/:attachment/:id_partition/:style/:filename"
 
   validates_attachment_content_type :audio, content_type: 'application/octet-stream'
-  #do_not_validate_attachment_file_type :audio
+  validates :audio, presence: true
+  validates :text, presence: true
 
 end

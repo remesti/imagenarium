@@ -12,23 +12,34 @@
           id: 'card_topic_name',
           class: 'form-control',
           data: {autocomplete_source: Topic.pluck(:name).to_json}
+        = @card.errors.full_messages_for(:topic).first
 
     = f.fields_for :content do |c|
       .form-group.row
         .col-form-label.col-sm-2= c.label :text
-        .col-sm-4= c.text_field :text, class: 'form-control text'
+        .col-sm-4
+          = c.text_field :text, class: 'form-control text'
+          = @card.errors.full_messages_for(:'content.text').first
+
       .form-group.row
         .col-form-label.col-sm-2= c.label :audio, 'Audio file'
-        .col-sm-4= c.file_field :audio
+        .col-sm-4
+          = c.file_field :audio
+          = @card.errors.full_messages_for(:'content.audio').first
 
     = f.fields_for :image do |i|
       .form-group.row
         .col-form-label.col-sm-2= i.label :name, 'Image description'
-        .col-sm-4= i.text_field :name, class: 'form-control image-name'
+        .col-sm-4
+          = i.text_field :name, class: 'form-control image-name'
+          = @card.errors.full_messages_for(:'image.name').first
+
       .form-group.row
         .col-form-label.col-sm-2= i.label :image, 'Image file'
-        .col-sm-4= i.file_field :image
-        #image
+        .col-sm-4
+          = i.file_field :image
+          = @card.errors.full_messages_for(:'image.image').first
 
     .form-group.row
       .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'
+      

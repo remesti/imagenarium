@@ -7,6 +7,7 @@ class Card < ApplicationRecord
   has_and_belongs_to_many :card_sessions
 
   accepts_nested_attributes_for :content, :image
+  validates :content, :image, :language, :topic, presence: true
 
   def topic_name
     topic.try(:name)

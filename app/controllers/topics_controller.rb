@@ -8,4 +8,26 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
   end
 
+  def new
+    @topic = Topic.new
+  end
+
+  def create
+    @topic = Topic.new(topic_params)
+
+    if @topic.save
+      params[:images].each do |image|
+        CardCreator.new(@topic, image).perform
+      end
+
+      redirect_to @topic
+    else
+      render :new
+    end
+  end
+
+  def topic_params
+    params.require(:topic).permit(:name, :language_id)
+  end
+
 end

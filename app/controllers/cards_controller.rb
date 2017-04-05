@@ -45,8 +45,9 @@ class CardsController < ApplicationController
         :language_id,
         :topic_name,
         content_attributes: [:text, :audio],
-        image_attributes: [:name, :image]
-      )
+        image_attributes: [:image]
+      ).reject { |_, v| v.blank? }
+
   end
 
 end

@@ -19,6 +19,8 @@
         .col-form-label.col-sm-2= c.label :text
         .col-sm-4
           = c.text_field :text, class: 'form-control text'
+          - if @card.content
+            = audio_tag @card.content.audio, controls: 'controls'
           = @card.errors.full_messages_for(:'content.text').first
 
       .form-group.row
@@ -29,17 +31,12 @@
 
     = f.fields_for :image do |i|
       .form-group.row
-        .col-form-label.col-sm-2= i.label :name, 'Image description'
-        .col-sm-4
-          = i.text_field :name, class: 'form-control image-name'
-          = @card.errors.full_messages_for(:'image.name').first
-
-      .form-group.row
         .col-form-label.col-sm-2= i.label :image, 'Image file'
         .col-sm-4
           = i.file_field :image
+          - if @card.image
+            = image_tag @card.image.image
           = @card.errors.full_messages_for(:'image.image').first
 
     .form-group.row
       .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'
-      

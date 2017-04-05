@@ -6,7 +6,9 @@ class Card < ApplicationRecord
   belongs_to :topic
   has_and_belongs_to_many :card_sessions
 
-  accepts_nested_attributes_for :content, :image
+  accepts_nested_attributes_for :content, reject_if: proc { |attributes| attributes[:audio].blank? }
+  accepts_nested_attributes_for :image, reject_if: proc { |attributes| attributes[:image].blank? }
+
   validates :content, :image, :language, :topic, presence: true
 
   def topic_name

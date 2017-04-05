@@ -12,9 +12,9 @@
         = @topic.errors.full_messages_for(:name).first
 
     .form-group.row
-      .col-form-label.col-sm-2= c.label :images, 'Image files'
+      .col-form-label.col-sm-2= f.label :images, 'Image files'
       .col-sm-4
-        = c.file_field_tag :images, multiple: true
-        
+        = f.file_field_tag :images, multiple: true
+
     .form-group.row
-        .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'
+      .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'

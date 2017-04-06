@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
 
     if @topic.save
       params[:images].each do |image|
+        puts image.inspect
         CardCreator.new(@topic, image).perform
       end
 

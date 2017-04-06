@@ -17,7 +17,7 @@ class CardCreator
   def card_attrs
     {
       language: @language,
-      :topic: @topic,
+      topic: @topic,
       content_attributes: [text: text, audio: audio],
       image_attributes: [image: @image]
     }

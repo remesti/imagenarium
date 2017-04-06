@@ -46,8 +46,7 @@ class CardsController < ApplicationController
         :topic_name,
         content_attributes: [:text, :audio],
         image_attributes: [:image]
-      ).reject { |_, v| v.blank? }
-
+      )
   end
 
 end

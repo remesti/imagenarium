@@ -18,16 +18,14 @@ class CardCreator
     {
       language: @language,
       topic: @topic,
-      content_attributes: [text: text, audio: audio],
-      image_attributes: [image: @image]
+      content_attributes: {text: text, audio: audio},
+      image_attributes: {image: @image}
     }
   end
 
   def text
     return @text if @text
     image_name = File.basename(@image.original_filename, '.*')
-    puts image_name
-    puts "#{TRANSLATE_SERVICE_URL}#{@language.slug}&dt=t&q=#{URI::encode(image_name)}"
     translation_data = open("#{TRANSLATE_SERVICE_URL}#{@language.slug}&dt=t&q=#{URI::encode(image_name)}").read
 
     #TODO Parse an attachment as JSON
@@ -36,7 +34,6 @@ class CardCreator
 
   #TODO Replace with AddressableURI
   def audio
-    puts "#{AUDIO_SERVICE_URL}/#{@language.slug}/#{URI::encode(@text)}.mp3"
-    @audio ||= open("#{AUDIO_SERVICE_URL}/#{@language.slug}/#{URI::encode(@text)}.mp3").read
+    @audio ||= URI.parse("#{AUDIO_SERVICE_URL}/#{@language.slug}/#{URI::encode(@text)}.mp3")
   end
 end

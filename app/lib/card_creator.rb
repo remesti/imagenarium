@@ -8,10 +8,13 @@ class CardCreator
     @language = topic.language
     @text     = nil
     @audio    = nil
+    @logger   = Logger.new('log/card_creator.log')
   end
 
   def perform
     Card.create(card_attrs)
+  rescue => e
+    @logger.error e.message
   end
 
   def card_attrs

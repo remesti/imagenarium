@@ -1,5 +1,8 @@
 .container
   h3= @topic.name
+  ul.nav.justify-content-end
+    li.nav-item= link_to 'New card', new_card_path(language_id: @topic.language_id, topic_name: @topic.name)
+
   .card-columns
     - @topic.cards.each do |card|
       .card
@@ -8,4 +11,11 @@
 
         .card-block
           h4.card-title= card.content.text
-          
+
+        .card-block
+          = link_to 'Edit', edit_card_path(card), class: 'card-link'
+          = link_to 'Delete',
+                    card_path(card),
+                    method: :delete,
+                    data: {:confirm => 'Are you sure?'},
+                    class: 'card-link'

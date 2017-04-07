@@ -2,6 +2,9 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @card.language = Language.find(params[:language_id]) if params[:language_id]
+    @card.topic_name = params[:topic_name] if params[:topic_name]
+
     @card.build_image
     @card.build_content
   end

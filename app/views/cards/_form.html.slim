@@ -19,14 +19,13 @@
         .col-form-label.col-sm-2= c.label :text
         .col-sm-4
           = c.text_field :text, class: 'form-control text'
-          - if @card.content
-            = audio_tag @card.content.audio, controls: 'controls'
           = @card.errors.full_messages_for(:'content.text').first
 
       .form-group.row
         .col-form-label.col-sm-2= c.label :audio, 'Audio file'
         .col-sm-4
           = c.file_field :audio
+          = @card.content.try(:audio_file_name)
           = @card.errors.full_messages_for(:'content.audio').first
 
     = f.fields_for :image do |i|
@@ -34,8 +33,7 @@
         .col-form-label.col-sm-2= i.label :image, 'Image file'
         .col-sm-4
           = i.file_field :image
-          - if @card.image
-            = image_tag @card.image.image
+          = @card.image.try(:image_file_name)
           = @card.errors.full_messages_for(:'image.image').first
 
     .form-group.row

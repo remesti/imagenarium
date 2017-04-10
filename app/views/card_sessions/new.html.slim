@@ -1,1 +1,21 @@
-= link_to 'New session', card_sessions_url, method: :post
+.container
+  = link_to 'New session', card_sessions_url, method: :post
+
+  .row
+    .col.text-center
+      h4 More than 1500 cards
+      p With supporting text below as a natural lead-in to additional content.
+  .row
+    .col
+    .col
+      .carousel.slide{data-ride='carousel' data-interval=2000}
+        .carousel-inner{role='listbox'}
+          .carousel-item.active
+            .card= image_tag 'T-Rex.png'
+          .carousel-item
+            .card= image_tag 'Kettle.png'
+          .carousel-item
+            .card= image_tag 'apple.png'
+          .carousel-item
+            .card= image_tag 'kitten.png'
+    .col

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :cards, :card_sessions, :topics
+  resources :topics, :cards, :schichida_sessions, :card_sessions
 
 end

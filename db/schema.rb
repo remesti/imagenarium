@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404190848) do
+ActiveRecord::Schema.define(version: 20170410092057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20170404190848) do
     t.index ["image_id"], name: "index_cards_on_image_id", using: :btree
   end
 
+  create_table "cards_schichida_sessions", id: false, force: :cascade do |t|
+    t.integer "schichida_session_id", null: false
+    t.integer "card_id",              null: false
+    t.index ["card_id", "schichida_session_id"], name: "idx_cards_ss_on_card_id_and_schichida_session_id", using: :btree
+    t.index ["schichida_session_id", "card_id"], name: "idx_cards_ss_on_schichida_session_id_and_card_id", using: :btree
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string   "text",               null: false
     t.string   "audio_file_name",    null: false
@@ -62,6 +69,11 @@ ActiveRecord::Schema.define(version: 20170404190848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+  end
+
+  create_table "schichida_sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|

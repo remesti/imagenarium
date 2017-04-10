@@ -20,7 +20,7 @@
 
 $(document).ready( function() {
 
-  $('.carousel').bind('slide.bs.carousel', function (e) {
+  $('.carousel').bind('slid.bs.carousel', function (e) {
     $('.carousel-item.active').find('audio')[0].play();
   });
 

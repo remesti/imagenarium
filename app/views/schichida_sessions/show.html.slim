@@ -6,7 +6,7 @@
           .carousel-item.active
             .card
               = image_tag @first_card.image.image
-              = audio_tag @first_card.content.audio
+              = audio_tag @first_card.content.audio, autoplay: true
 
           - @cards.each do |card|
             .carousel-item

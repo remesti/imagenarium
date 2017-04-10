@@ -1,12 +1,12 @@
 .container
   .row
     .col.text-center
-      .carousel.slide{data-ride='carousel' data-interval=2000}
+      .carousel.slide{data-ride='carousel' data-interval='false'}
         .carousel-inner{role='listbox'}
           .carousel-item.active
             .card
               = image_tag @first_card.image.image
-              = audio_tag @first_card.content.audio, autoplay: true
+              = audio_tag @first_card.content.audio
 
           - @cards.each do |card|
             .carousel-item

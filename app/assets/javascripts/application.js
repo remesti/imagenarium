@@ -20,15 +20,8 @@
 
 $(document).ready( function() {
 
-  $('.audio').on('ended',  function() {
-    setTimeout(function() {
-      $('.js-card:visible:last').hide();
-      $('.js-card:visible:last').find('audio')[0].play();
-    }, 500);
+  $('.carousel').bind('slide.bs.carousel', function (e) {
+    $('.carousel-item.active').find('audio')[0].play();
   });
 
-  $('.text').on('focusout', function() {
-    var textValue = $('.text').val();
-    $('.image-name').val(textValue);
-  });
 });

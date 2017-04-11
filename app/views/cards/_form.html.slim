@@ -1,40 +1,39 @@
-.container
-  = form_for @card do |f|
+= form_for @card do |f|
+  .form-group.row
+    .col-form-label.col-sm-2= f.label :language
+    .col-sm-4
+      = f.collection_select :language_id, Language.order(:name), :id, :name, {}, {class: 'custom-select'}
+
+  .form-group.row
+    .col-form-label.col-sm-2= f.label :topic_name
+    .col-sm-4
+      = f.text_field :topic_name,
+        id: 'card_topic_name',
+        class: 'form-control',
+        data: {autocomplete_source: Topic.pluck(:name).to_json}
+      = @card.errors.full_messages_for(:topic).first
+
+  = f.fields_for :content do |c|
     .form-group.row
-      .col-form-label.col-sm-2= f.label :language
+      .col-form-label.col-sm-2= c.label :text
       .col-sm-4
-        = f.collection_select :language_id, Language.order(:name), :id, :name, {}, {class: 'custom-select'}
+        = c.text_field :text, class: 'form-control text'
+        = @card.errors.full_messages_for(:'content.text').first
 
     .form-group.row
-      .col-form-label.col-sm-2= f.label :topic_name
+      .col-form-label.col-sm-2= c.label :audio, 'Audio file'
       .col-sm-4
-        = f.text_field :topic_name,
-          id: 'card_topic_name',
-          class: 'form-control',
-          data: {autocomplete_source: Topic.pluck(:name).to_json}
-        = @card.errors.full_messages_for(:topic).first
+        = c.file_field :audio
+        = @card.content.try(:audio_file_name)
+        = @card.errors.full_messages_for(:'content.audio').first
 
-    = f.fields_for :content do |c|
-      .form-group.row
-        .col-form-label.col-sm-2= c.label :text
-        .col-sm-4
-          = c.text_field :text, class: 'form-control text'
-          = @card.errors.full_messages_for(:'content.text').first
-
-      .form-group.row
-        .col-form-label.col-sm-2= c.label :audio, 'Audio file'
-        .col-sm-4
-          = c.file_field :audio
-          = @card.content.try(:audio_file_name)
-          = @card.errors.full_messages_for(:'content.audio').first
-
-    = f.fields_for :image do |i|
-      .form-group.row
-        .col-form-label.col-sm-2= i.label :image, 'Image file'
-        .col-sm-4
-          = i.file_field :image
-          = @card.image.try(:image_file_name)
-          = @card.errors.full_messages_for(:'image.image').first
-
+  = f.fields_for :image do |i|
     .form-group.row
-      .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'
+      .col-form-label.col-sm-2= i.label :image, 'Image file'
+      .col-sm-4
+        = i.file_field :image
+        = @card.image.try(:image_file_name)
+        = @card.errors.full_messages_for(:'image.image').first
+
+  .form-group.row
+    .col-sm-10.offset-sm-2= f.submit 'Save', class: 'btn btn-primary'

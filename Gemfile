@@ -23,6 +23,7 @@ gem 'jquery-ui-rails'
 gem 'font-awesome-sass'
 gem 'paperclip-cloudinary'
 gem 'rmagick'
+gem 'sorcery'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

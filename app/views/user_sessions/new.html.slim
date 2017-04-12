@@ -1,0 +1,15 @@
+= form_tag user_sessions_path, method: :post do
+  .form-group
+    = label_tag :email
+    = text_field_tag :email, nil, class: 'form-control'
+
+  .form-group
+    = label_tag :password
+    = password_field_tag :password, nil, class: 'form-control'
+
+  .form-group
+    = submit_tag :login, class: 'btn btn-primary'
+    |&nbsp;
+    |or
+    |&nbsp;
+    = link_to :registration, new_user_path

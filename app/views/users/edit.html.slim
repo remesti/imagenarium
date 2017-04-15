@@ -1,1 +1,84 @@
-= render 'form'
+ul.nav.nav-tabs{role='tablist'}
+  li.nav-item
+    = link_to 'Account', '#account', class: 'nav-link active', role: 'tab', 'data-toggle': 'tab'
+  li.nav-item
+    = link_to 'Notifications', '#notifications', class: 'nav-link', role: 'tab', 'data-toggle': 'tab'
+  li.nav-item
+    = link_to 'Dashboard', '#dashboard', class: 'nav-link', role: 'tab', 'data-toggle': 'tab'
+  li.nav-item
+    = link_to 'Statistics', '#', class: 'nav-link', role: 'tab', 'data-toggle': 'tab'
+
+= form_for @user, role: 'form', autocomplete: 'off' do |f|
+  .tab-content
+  
+    #account.tab-pane.active{role='tabpanel'}
+      h4.mt-4 Change password
+      hr
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: 'off', class: 'form-control'
+
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: 'form-control'
+
+      .form-group
+        = f.submit 'Update password', class: 'btn'
+        
+      h4.mt-4 Change email
+      hr        
+      .form-group
+        = f.label :email
+        = f.text_field :email, autocomplete: 'off', class: 'form-control'
+      .form-group
+        = f.submit 'Change email', class: 'btn'
+        
+    #notifications.tab-pane
+      h4.mt-4 Notifications
+      hr
+      p Choose notifications you receive.
+      
+    #dashboard.tab-pane
+      h4.mt-4 Languages
+      hr
+      .form-group
+        = label_tag 'Site language'
+        = select_tag :language_id,
+          options_from_collection_for_select(Language.order(:name), :id, :name, params[:language_id]),
+          class: 'custom-select form-control'
+          
+      .form-group
+        = label_tag 'Cards language'
+        = select_tag :language_id,
+          options_from_collection_for_select(Language.order(:name), :id, :name, params[:language_id]),
+          class: 'custom-select form-control'
+      .form-group
+        =submit_tag 'Update languages', class: 'btn'
+          
+      h4.mt-4 Cards sets
+      hr      
+      .form-group
+        = label_tag nil,  class: 'custom-control custom-checkbox' do
+          = check_box_tag :schichida, false, false, class: 'custom-control-input'
+          span.custom-control-indicator
+          span.custom-control-description Schichida cards
+          
+      .form-group
+        = label_tag nil,  class: 'custom-control custom-checkbox' do
+          = check_box_tag :math, false, false, class: 'custom-control-input'
+          span.custom-control-indicator          
+          span.custom-control-description Math cards
+        
+      .form-group
+        = label_tag nil,  class: 'custom-control custom-checkbox' do
+          = check_box_tag :doman, false, false, class: 'custom-control-input'
+          span.custom-control-indicator          
+          span.custom-control-description Doman cards
+          
+      .form-group
+        =submit_tag 'Update', class: 'btn'      
+  
+    #statistics.tab-pane
+      
+
+        

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'topics#index'
+  root 'dashboard#index'
 
-  resources :topics, :cards, :schichida_sessions, :card_sessions
+  get 'dashboard' => 'dashboard#index', :as => :dashboard
 
+  resources :topics, :cards, :schichida_sessions
   resources :user_sessions, :users
 
   get 'login' => 'user_sessions#new', :as => :login

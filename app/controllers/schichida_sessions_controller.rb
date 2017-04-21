@@ -4,7 +4,7 @@ class SchichidaSessionsController < ApplicationController
   end
 
   def create
-    @schichida_session = SchichidaSession.new
+    @schichida_session = SchichidaSession.new(user: current_user)
     @schichida_session.build_cards
 
     redirect_to topics_url if @schichida_session.cards.empty?

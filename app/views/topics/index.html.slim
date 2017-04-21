@@ -1,10 +1,11 @@
 = form_tag :topics, method: :get do
-  .form-group
-    = select_tag :language_id,
-      options_from_collection_for_select(Language.order(:name), :id, :name, params[:language_id]),
-      class: 'custom-select',
-      prompt: t(:select_language),
-      onchange: 'this.form.submit();'
+  - unless current_user.try(:cards_language_id)
+    .form-group
+      = select_tag :language_id,
+        options_from_collection_for_select(Language.order(:name), :id, :name, params[:language_id]),
+        class: 'custom-select',
+        prompt: t(:select_language),
+        onchange: 'this.form.submit();'
 
 - @topics.each do |topic|
   = link_to topic_path(topic), class: 'btn btn-secondary m-1' do

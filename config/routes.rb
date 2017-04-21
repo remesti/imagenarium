@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index', :as => :dashboard
 
-  resources :topics, :cards, :schichida_sessions
+  resources :topics, :cards, :schichida_sessions, :doman_sessions, :math_sessions
   resources :user_sessions, :users
 
   get 'login' => 'user_sessions#new', :as => :login

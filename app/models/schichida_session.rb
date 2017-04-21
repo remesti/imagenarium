@@ -2,10 +2,15 @@ class SchichidaSession < ApplicationRecord
 
   CARDS_COUNT = 20
 
+  belongs_to :user
   has_and_belongs_to_many :cards
 
   def build_cards
     self.cards = new_cards.order(:topic_id).limit(CARDS_COUNT)
+  end
+
+  def prev_session
+    SchichidaSession.where(user: user).order('created_at DESC').first
   end
 
   private
@@ -29,9 +34,4 @@ class SchichidaSession < ApplicationRecord
   def opened_topic_id
     prev_session.cards.pluck(:topic_id).first
   end
-
-  def prev_session
-    SchichidaSession.order('created_at DESC').first
-  end
-
 end

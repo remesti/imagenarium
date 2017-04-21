@@ -1,20 +1,10 @@
 .list-group
-  = link_to nil, class: 'list-group-item list-group-item-action flex-column align-items-start' do
-    .d-flex.w-100.justify-content-between
-      h5 Schichida session
-      small 3 days ago
-    small.text-muted Caution! The session starts immediately.
-      
-  = link_to nil, class: 'list-group-item list-group-item-action flex-column align-items-start' do
-    .d-flex.w-100.justify-content-between
-      h5 Doman session
-      small 1 day ago
-    small.text-muted Caution! The session starts immediately.
-      
-  = link_to nil, class: 'list-group-item list-group-item-action flex-column align-items-start' do
-    .d-flex.w-100.justify-content-between
-      h5 Math session
-      small 3 days ago
-    small.text-muted Caution! The session starts immediately.
-  
-  
+  - %i(schichida doman math).each do |set|
+    - if current_user.send(set)
+      = link_to send("#{set}_sessions_path"), 
+                method: :post,
+                class: 'list-group-item list-group-item-action flex-column align-items-start' do
+        .d-flex.w-100.justify-content-between
+          h5= set
+          small 3 days ago
+        small.text-muted Caution! The session starts immediately.       

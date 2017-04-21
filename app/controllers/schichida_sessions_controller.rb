@@ -7,9 +7,9 @@ class SchichidaSessionsController < ApplicationController
     @schichida_session = SchichidaSession.new(user: current_user)
     @schichida_session.build_cards
 
-    redirect_to topics_url if @schichida_session.cards.empty?
-
-    if @schichida_session.save
+    if @schichida_session.cards.empty?
+      redirect_to topics_url
+    elsif @schichida_session.save
       redirect_to @schichida_session
     else
       render :new

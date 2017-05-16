@@ -13,7 +13,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     if @card.save
-      redirect_to @card
+      redirect_to @card.topic
     else
       render :new
     end
@@ -27,7 +27,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to @card
+      redirect_to @card.topic
     else
       render :edit
     end

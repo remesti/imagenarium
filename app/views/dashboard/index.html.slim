@@ -1,6 +1,6 @@
 .list-group
   - %i(schichida doman math).each do |set|
-    - if current_user.send(set)
+    - if logged_in? && current_user.send(set)
       = link_to send("#{set}_sessions_path"), 
                 method: :post,
                 class: 'list-group-item list-group-item-action flex-column align-items-start' do

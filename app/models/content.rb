@@ -19,6 +19,6 @@ class Content < ApplicationRecord
 
   validates_attachment_content_type :audio, content_type: ALLOWED_AUDIO
   validates :audio, presence: true
-  validates :text, presence: true
+  validates :text, presence: true, uniqueness: { scope: :language }
 
 end

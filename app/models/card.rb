@@ -10,6 +10,7 @@ class Card < ApplicationRecord
   accepts_nested_attributes_for :image, reject_if: proc { |attrs| attrs[:image].blank? }
 
   validates :content, :image, :language, :topic, presence: true
+  validates :content, uniqueness: { scope: :image }
 
   def topic_name
     topic.try(:name)

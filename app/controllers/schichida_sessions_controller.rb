@@ -5,7 +5,12 @@ class SchichidaSessionsController < ApplicationController
 
   def create
     @schichida_session = SchichidaSession.new(user: current_user)
-    @schichida_session.build_cards
+    if params[:topic_id]
+      topic = Topic.find(params[:topic_id])
+      @schichida_session.cards = topic.try(:cards)
+    else
+      @schichida_session.build_cards
+    end
 
     if @schichida_session.cards.empty?
       redirect_to topics_url

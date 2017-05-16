@@ -1,7 +1,7 @@
 h3= @topic.name
 ul.nav.justify-content-end
   li.nav-item= link_to 'New card', new_card_path(language_id: @topic.language_id, topic_name: @topic.name)
-  li.nav-item= link_to 'New session', schichida_session_path(topic_id: @topic.id), method: :post
+  li.nav-item= link_to 'New session', schichida_sessions_path(topic_id: @topic.id), method: :post
 
 .card-columns
   - @topic.cards.each do |card|

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'dashboard#index'
-
-  get 'dashboard' => 'dashboard#index', :as => :dashboard
+  root 'topics#index'
 
   resources :topics, :cards, :schichida_sessions, :doman_sessions, :math_sessions
   resources :user_sessions, :users

@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
   def index
-    @topics = Topic.where(language_id: current_user.try(:cards_language_id))
+    @topics = Topic.where(language_id: current_user.cards_language_id) if current_user
     @topics ||= Topic.where(language_id: params[:language_id])
   end
 
